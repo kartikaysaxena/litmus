@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"auth.revoked-token"},{"v":{"$numberInt":"2"},"key":{"expires_at":{"$numberInt":"1"}},"name":"expires_at_1","expireAfterSeconds":{"$numberInt":"0"},"ns":"auth.revoked-token"}],"uuid":"721b820082d24e859b90f1a2bacd72fa","collectionName":"revoked-token","type":"collection"}

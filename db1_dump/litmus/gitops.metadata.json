@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"litmus.gitops"},{"v":{"$numberInt":"2"},"unique":true,"key":{"project_id":{"$numberInt":"1"}},"name":"project_id_1","ns":"litmus.gitops"}],"uuid":"2720182b2f014f0a9014e21a9ad8bcb4","collectionName":"gitops","type":"collection"}

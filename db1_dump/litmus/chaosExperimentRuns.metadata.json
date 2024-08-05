@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"litmus.chaosExperimentRuns"},{"v":{"$numberInt":"2"},"key":{"experiment_run_id":{"$numberInt":"1"}},"name":"experiment_run_id_1","ns":"litmus.chaosExperimentRuns"}],"uuid":"b66ad8561e0743c0a766ac641aba8b18","collectionName":"chaosExperimentRuns","type":"collection"}

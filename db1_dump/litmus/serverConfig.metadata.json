@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"litmus.serverConfig"},{"v":{"$numberInt":"2"},"unique":true,"key":{"key":{"$numberInt":"1"}},"name":"key_1","ns":"litmus.serverConfig"}],"uuid":"2345582cad464c3ca8bfa9bb1162a3d7","collectionName":"serverConfig","type":"collection"}
