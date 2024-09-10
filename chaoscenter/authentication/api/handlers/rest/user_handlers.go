@@ -291,6 +291,10 @@ func LoginUser(service services.ApplicationService) gin.HandlerFunc {
 			return
 		}
 
+		log.WithFields(log.Fields{
+			"time" : time.Since(timeNow).Seconds(),
+		}).Info("debug level 1")
+
 		// Checking if user is deactivated
 		if user.DeactivatedAt != nil {
 			c.JSON(utils.ErrorStatusCodes[utils.ErrInvalidCredentials], presenter.CreateErrorResponse(utils.ErrInvalidCredentials))
@@ -305,11 +309,19 @@ func LoginUser(service services.ApplicationService) gin.HandlerFunc {
 			return
 		}
 
+		log.WithFields(log.Fields{
+			"time" : time.Since(timeNow).Seconds(),
+		}).Info("debug level 1.1")
+
 		salt, err := service.GetConfig("salt")
 		if err != nil {
 			c.JSON(utils.ErrorStatusCodes[utils.ErrServerError], presenter.CreateErrorResponse(utils.ErrServerError))
 			return
 		}
+
+		log.WithFields(log.Fields{
+			"time" : time.Since(timeNow).Seconds(),
+		}).Info("debug level 1.2")
 
 		token, err := service.GetSignedJWT(user, salt.Value)
 		if err != nil {
@@ -319,8 +331,16 @@ func LoginUser(service services.ApplicationService) gin.HandlerFunc {
 		}
 		expiryTime := time.Duration(utils.JWTExpiryDuration) * 60
 
+		log.WithFields(log.Fields{
+			"time" : time.Since(timeNow).Seconds(),
+		}).Info("debug level 2")
+
 		var defaultProject string
 		ownerProjects, err := service.GetOwnerProjectIDs(c, user.ID)
+
+		log.WithFields(log.Fields{
+			"time" : time.Since(timeNow).Seconds(),
+		}).Info("debug level 3")
 
 		if len(ownerProjects) > 0 {
 			defaultProject = ownerProjects[0].ID
@@ -366,11 +386,10 @@ func LoginUser(service services.ApplicationService) gin.HandlerFunc {
 			defaultProject = newProject.ID
 		}
 
-		timeTotal := time.Since(timeNow)
 
 		log.WithFields(log.Fields{
-			"time" : timeTotal.Seconds(),
-		}).Info("time passed in login")
+			"time" : time.Since(timeNow).Seconds(),
+		}).Info("debug level 4")
 
 		c.JSON(http.StatusOK, gin.H{
 			"accessToken": token,

@@ -8,6 +8,8 @@ import (
 	"runtime"
 	"time"
 
+	_ "net/http/pprof"
+
 	response "github.com/litmuschaos/litmus/chaoscenter/authentication/api/handlers"
 	"github.com/litmuschaos/litmus/chaoscenter/authentication/pkg/authConfig"
 	"google.golang.org/grpc/credentials"
@@ -57,6 +59,11 @@ func init() {
 // @title Chaoscenter API documentation
 func main() {
 	// send logs to stderr, so we can use 'kubectl logs'
+
+	go func() {
+        log.Println(http.ListenAndServe("localhost:6060", nil))
+    }()
+
 	_ = flag.Set("logtostderr", "true")
 	_ = flag.Set("v", "3")
 
