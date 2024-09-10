@@ -269,6 +269,7 @@ func InviteUsers(service services.ApplicationService) gin.HandlerFunc {
 //	@Router			/login [post]
 func LoginUser(service services.ApplicationService) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		timeNow := time.Now()
 		var userRequest entities.User
 		err := c.BindJSON(&userRequest)
 		if err != nil {
@@ -364,6 +365,12 @@ func LoginUser(service services.ApplicationService) gin.HandlerFunc {
 			}
 			defaultProject = newProject.ID
 		}
+
+		timeTotal := time.Since(timeNow)
+
+		log.WithFields(log.Fields{
+			"time" : timeTotal.Seconds(),
+		}).Info("time passed in login")
 
 		c.JSON(http.StatusOK, gin.H{
 			"accessToken": token,
